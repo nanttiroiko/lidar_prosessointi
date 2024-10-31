@@ -1,0 +1,1 @@
+Kopioi tähän kansioon käsiteltävät .laz/.las -tiedostot.
