@@ -4,7 +4,7 @@ Tähän on koottu kokoelma skriptejä LiDAR -aineistojen käsittelyyn ilmaisilla
 
 Skriptit on tehty ensisijaisesti arkeologien tarpeisiin, mutta soveltuvat sellaisenaan tai muokattuna muihinkin tarkoituksiin.
 
-Skriptit on laadittu erityisesti suurien tiedostomäärien käsittelyä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti koko käsiteltävänä oleva aineisto. Niitä ei kuitenkaan ole erityisemmin optimoitu suorituskykyä ajatellen, joten tietyt skriptit ja työvaiheet eivät välttämättä ole erityisen nopeita. Osasta skriptejä on olemassa rinnakkaisprosessoinnin mahdollistavat versiot mikä voi nopeuttaa käsittelyä merkittävästikin.
+Skriptit on laadittu suurien tiedostomäärien käsittelyä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti koko käsiteltävänä oleva aineisto. Niitä ei kuitenkaan ole erityisemmin optimoitu suorituskykyä ajatellen, joten tietyt skriptit ja työvaiheet eivät välttämättä ole erityisen nopeita. Osasta skriptejä on olemassa rinnakkaisprosessoinnin mahdollistavat versiot mikä voi nopeuttaa käsittelyä merkittävästikin.
 
 Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaperäiset ohjeet, joita noudattamalla skriptejä on mahdollista käyttää ilman aiempaa kokemusta ohjelmoinnista tai komentorivin käytöstä. 
 
