@@ -1,16 +1,14 @@
 # lidar_prosessointi
 
-Tähän on koottu kokoelma skriptejä LiDAR -aineistojen käsittelyyn ilmaisilla avoimen lähdekoodin työkaluilla (esim. PDAL ja SAGA).
+Tähän on koottu kokoelma skriptejä LiDAR -aineistojen käsittelyyn ilmaisilla avoimen lähdekoodin työkaluilla (esim. PDAL).
 
-Skriptit on tehty ensisijaisesti arkeologien tarpeisiin, mutta soveltuvat yhtä hyvin muuhunkin käyttöön.
+Skriptit on tehty ensisijaisesti arkeologien tarpeisiin, mutta soveltuvat sellaisenaan tai muokattuna muihinkin tarkoituksiin.
+
+Skriptit on laadittu erityisesti suurien tiedostomäärien käsittelyä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti koko käsiteltävänä oleva aineisto. Niitä ei kuitenkaan ole erityisemmin optimoitu suorituskykyä ajatellen, joten tietyt skriptit ja työvaiheet eivät välttämättä ole erityisen nopeita. Osasta skriptejä on kuitenkin olemassa rinnakkaisprosessoinnin mahdollistavat versiot mikä voi nopeuttaa käsittelyä merkittävästikin.
 
 # Esivalmistelut
 
-Skriptit käyttävät laserkeilausaineistojen käsittelyyn pääasiassa PDAL-kirjastoa tai SAGAa. 
-
 ## Python -ympäristön luominen
-
-Skriptit voi suorittamiseen tarvitaan
 
 Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineistojen käsittelyyn tarvittavat paketit (pdal). Alla on yksityiskohtiaset ohjeet python ympäristön luomiseen Anacondan avulla. 
 
@@ -31,7 +29,9 @@ Skriptit käsittelevät oletuksena kaiken kansioihin tallennetun aineiston (joll
 
 Voit kopioida valmiin kansiorakenteen suoraan githubista.
 
-# Skriptien ajaminen
+# Skriptien suorittaminen
+
+##
 
 
 
