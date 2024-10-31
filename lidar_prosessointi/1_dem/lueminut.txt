@@ -1,0 +1,1 @@
+Tähän kansioon tallennetaan korkeusmallit geotiffeinä.
