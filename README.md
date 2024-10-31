@@ -35,7 +35,7 @@ Voit kopioida valmiin kansiorakenteen suoraan Githubista.
 
 ## Ennen aloittamista
 - Avaa Anaconda prompt (ts. Anacondan oma 'komentorivi') ja aktivoi aiemmin luomasi python-ympäristö komennolla: conda activate pdal
-- Aseta työskentelykansio komennolla: cd C:lisää\oikea\polku\tähän (esim. cd C:\users\kayttajatunnus\lidar_prosessointi)
+- Aseta työskentelykansio komennolla: cd C:\lisää\oikea\polku\tähän (esim. cd C:\users\kayttajatunnus\lidar_prosessointi)
 
 Nämä komennot täytyy antaa joka kerta uudestaan kun aloitat skriptien käytön.
 
