@@ -14,14 +14,14 @@ Skriptit voi suorittamiseen tarvitaan
 
 Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineistojen käsittelyyn tarvittavat paketit (pdal). Alla on yksityiskohtiaset ohjeet python ympäristön luomiseen Anacondan avulla. 
 
-1 - Asenna Anaconda https://docs.anaconda.com/anaconda/install/
-2 - Käynnistä Anaconda prompt
-3 - Tee uusi Python ympäristö komennolla: conda create -n pdal pdal geopandas numpy
+- Asenna Anaconda https://docs.anaconda.com/anaconda/install/
+- - Käynnistä Anaconda prompt
+- Tee uusi Python ympäristö komennolla: conda create -n pdal pdal geopandas numpy
 Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja asentaa siihen tarvittavat paketit (pdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
 
 ## Kansiorakenne ja aineiston järjestäminen
 Jotta skripti toimisi oikein, käsiteltävät tiedostot tulee järjestää kansioihin tietyllä tavalla. Skripti olettaa, että aineistot on järjestetty työskentelykansion sisällä erillisiin kansioihin aineiston tyypin perusteella seuraavasti:
-- O_lidar (laserkeilausaineisto -laz/-las -tiedostoina)
+- 0_lidar (laserkeilausaineisto -laz/-las -tiedostoina)
 - 1_dem (korkeusmallit geotiffeinä)
 - 2_visualisoinnit (valmiit visualisoinnit geotiffeinä)
 
