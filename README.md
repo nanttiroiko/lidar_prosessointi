@@ -15,7 +15,7 @@ Skriptit voi suorittamiseen tarvitaan
 Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineistojen käsittelyyn tarvittavat paketit (pdal). Alla on yksityiskohtiaset ohjeet python ympäristön luomiseen Anacondan avulla. 
 
 - Asenna Anaconda https://docs.anaconda.com/anaconda/install/
-- - Käynnistä Anaconda prompt
+- Käynnistä Anaconda prompt
 - Tee uusi Python ympäristö komennolla: conda create -n pdal pdal geopandas numpy
 Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja asentaa siihen tarvittavat paketit (pdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
 
