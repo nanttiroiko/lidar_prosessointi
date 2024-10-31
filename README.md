@@ -33,11 +33,23 @@ Voit kopioida valmiin kansiorakenteen suoraan Githubista.
 
 # Skriptien suorittaminen
 
-## Ennen aloittamista
+Kun aloitat skriptien käytön, aktivoi aina ensin python-ympäristö ja aseta työskentelykansio.
 - Avaa Anaconda prompt (ts. Anacondan oma 'komentorivi') ja aktivoi aiemmin luomasi python-ympäristö komennolla: conda activate pdal
 - Aseta työskentelykansio komennolla: cd C:\lisää\oikea\polku\tähän (esim. cd C:\users\kayttajatunnus\lidar_prosessointi)
 
-Nämä komennot täytyy antaa joka kerta uudestaan kun aloitat skriptien käytön.
+Tämän jälkeen voit suorittaa skriptejä komennolla: python skriptin_nimi_tähän.py 
+
+Osa skripteistä mahdollistaa oletusasetusten muuttamisen antamalla skriptille valinnaisia argumentteja. Argumentit kirjoitetaan kometoriville varsinaisen komennon perään. 
+
+Tarkemmat ohjeet skriptien käyttöön ja mahdolliset lisävalinnat on esitetty alla.
+
+## laz2dem.py
+
+## dem2hillshade.py
+
+## dem2tpi.py
+
+
 
 
 
