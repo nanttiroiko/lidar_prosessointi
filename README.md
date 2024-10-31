@@ -6,6 +6,8 @@ Skriptit on tehty ensisijaisesti arkeologien tarpeisiin, mutta soveltuvat sellai
 
 Skriptit on laadittu erityisesti suurien tiedostomäärien käsittelyä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti koko käsiteltävänä oleva aineisto. Niitä ei kuitenkaan ole erityisemmin optimoitu suorituskykyä ajatellen, joten tietyt skriptit ja työvaiheet eivät välttämättä ole erityisen nopeita. Osasta skriptejä on kuitenkin olemassa rinnakkaisprosessoinnin mahdollistavat versiot mikä voi nopeuttaa käsittelyä merkittävästikin.
 
+Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaperäiset ohjeet, joita noudattamalla skriptejä on mahdollista käyttää ilman aiempaa kokemusta ohjelmoinnista tai komentorivin käytöstä. 
+
 # Esivalmistelut
 
 ## Python -ympäristön luominen
@@ -27,11 +29,16 @@ Varsinaiset skriptit (eli .py -päätteiset tiedostot) tallenetaan suoraan työs
 
 Skriptit käsittelevät oletuksena kaiken kansioihin tallennetun aineiston (jolla on oletettu tiedostopääte). Tästä syystä työskentelykansiota ei kannata käyttää aineistojen säilyttämiseen, eli kopioi työskentelykansioon vain se aineisto, minkä haluat käsitellä.
 
-Voit kopioida valmiin kansiorakenteen suoraan githubista.
+Voit kopioida valmiin kansiorakenteen suoraan Githubista.
 
 # Skriptien suorittaminen
 
-##
+## Ennen aloittamista
+- Avaa Anaconda prompt (ts. Anacondan oma 'komentorivi') ja aktivoi aiemmin luomasi python-ympäristö komennolla: conda activate pdal
+- Aseta työskentelykansio komennolla: cd C:lisää\oikea\polku\tähän (esim. cd C:\users\kayttajatunnus\lidar_prosessointi)
+
+Nämä komennot täytyy antaa joka kerta uudestaan kun aloitat skriptien käytön.
+
 
 
 
