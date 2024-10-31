@@ -1,0 +1,2 @@
+Tähän kansioon tallennetaan valmiit visualisoinnit geotiffeinä.
+Älä käytä muiden aineistojen säilyttämiseen.
