@@ -29,7 +29,7 @@ Varsinaiset skriptit (eli .py -päätteiset tiedostot) tallenetaan suoraan työs
 
 Skriptit käsittelevät oletuksena kaiken kansioihin tallennetun aineiston (jolla on oletettu tiedostopääte). Tästä syystä työskentelykansiota ei kannata käyttää aineistojen säilyttämiseen, eli kopioi työskentelykansioon vain se aineisto, minkä haluat käsitellä.
 
-Voit kopioida valmiin kansiorakenteen suoraan Githubista.
+Voit kopioida valmiin kansiorakenteen suoraan Githubista. Skriptit luovat tarvittaessa tuloksia ja väliaikaistiedostoja tarvittavat kansiot itse.
 
 # Skriptien suorittaminen
 
