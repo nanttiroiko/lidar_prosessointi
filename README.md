@@ -17,7 +17,7 @@ Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineist
 - Asenna Anaconda https://docs.anaconda.com/anaconda/install/
 - Käynnistä Anaconda prompt
 - Tee uusi Python ympäristö komennolla:
-  - conda create -n pdal -c conda-forge pdal gdal geopandas numpy
+  - conda create -n pdal -c conda-forge pdal gdal geopandas numpy rasterio affine
 
 Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja asentaa siihen tarvittavat paketit (pdal, gdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
 
