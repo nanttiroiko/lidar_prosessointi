@@ -1,10 +1,10 @@
 # lidar_prosessointi
 
-Tähän on koottu kokoelma skriptejä LiDAR -aineistojen käsittelyyn ilmaisilla avoimen lähdekoodin työkaluilla (esim. PDAL).
+Kokoan tähän joitakin hyödyllisiä skriptejä LiDAR -aineistojen käsittelyyn ilmaisilla avoimen lähdekoodin työkaluilla (esim. PDAL).
 
 Skriptit on tehty ensisijaisesti arkeologien tarpeisiin, mutta soveltuvat sellaisenaan tai muokattuna muihinkin tarkoituksiin.
 
-Skriptit on laadittu suurien tiedostomäärien käsittelyä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti koko käsiteltävänä oleva aineisto. Niitä ei kuitenkaan ole erityisemmin optimoitu suorituskykyä ajatellen, joten tietyt skriptit ja työvaiheet eivät välttämättä ole erityisen nopeita. Osasta skriptejä on olemassa rinnakkaisprosessoinnin mahdollistavat versiot mikä voi nopeuttaa käsittelyä merkittävästikin.
+Skriptit on laadittu suurien tiedostomäärien käsittelyä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti kaikki käsiteltävänä oleva aineisto.  Skriptit mahdollistavat usean tiedoston käsittelyn samanaikaisesti, mikä jonkin verran nopeuttaa prosessointia. 
 
 Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaperäiset ohjeet, joita noudattamalla skriptejä on mahdollista käyttää ilman aiempaa kokemusta ohjelmoinnista tai komentorivin käytöstä. 
 
@@ -43,11 +43,19 @@ Osa skripteistä mahdollistaa oletusasetusten muuttamisen antamalla skriptille v
 
 Tarkemmat ohjeet skriptien käyttöön ja mahdolliset lisävalinnat on esitetty alla.
 
-## laz2dem.py
+## pdal_laz2dem.py
 
-## dem2hillshade.py
+pdal_laz2dem.py tekee lidar/ -kansioon tallennetuista .laz päätteisistä tiedostoista pintamallit ja tallentaa ne kansioon dem/.
 
-## dem2tpi.py
+Skripti suoritetaan komennolla: python pdal_laz2dem.py
+
+Skriptille voi antaa seuraavat valinnaiset parametrit, jotka vaikuttavat skriptin toimintaan ja pintamallien ominaisuuksiin.
+--buffer      (default=0)
+--cores       (default=4)
+--crs         (default=3067, ts. ETRS-TM35FIN / EPSG:3067)
+--resolution  (default=1)
+
+
 
 
 
