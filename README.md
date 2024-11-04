@@ -53,11 +53,16 @@ Skriptille voi antaa seuraavat valinnaiset parametrit, jotka vaikuttavat skripti
 - --buffer      (default=0)
   - Laserkeilaustiilten käsittelyssä käytettävä bufferi. Käytettäessä bufferia pintamallin muodostamiseen käytetään myös käsiteltävää tiiltä ympäröivät pisteet, jolloin myös pintamalleista tulee alkuperäistä laserkeilaustiiltä laajempia. Bufferin käytöstä on hyötyä esimerkiksi tiettyjen visualisointitekniikoiden kanssa (esim. TPI), jotta vältytään poikkeamilta käsitetävien tiilien reunoilla. Bufferin koko annetaan metreissä. Bufferin käyttö hidastaa jonkin verran käsittelyä.
 - --cores       (default=4)
-  - Rinnakkain käsiteltävien tiedostojen määrä. Tällä asetuksella voit vaikuttaa huomattavasti prosessoinnin nopeuteen. JATKA TÄSTÄ
+  - Rinnakkain käsiteltävien tiedostojen määrä. Tällä asetuksella voit vaikuttaa huomattavasti prosessoinnin nopeuteen. Rinnakkain käsiteltävien tiedostojen määrän tulisi olla korkeintaan yhtä suuri kuin tietokoneen loogisten suorittimien määrä, minkä voit tarkistaa esimerkiksi tehtävienhallinnasta. Huomaa kuitenkin, että tietokoneen ominaisuuksista riippuen maksimia pienempi rinnakkain käsiteltävien tiedostojen määrä voi olla kokonaisuutena nopeampi.
 - --crs         (default=3067, ts. ETRS-TM35FIN / EPSG:3067)
+  - Tällä asetuksella voit asettaa haluamasi koordinaattijärjestelmän. Koordinaattijärjestelmän asettamiseen käytetään EPSG-numerokoodia. 
 - --resolution  (default=1)
+  - Laserkeilausaineistosta tuotettavien rasterien resoluutio metreinä. Käytä desimaalierottimena pistettä.
 
-Lisäparametrien vaikutukset:
+Lisäparamterit annetaan varsinaisen komennon jälkeen, esim: python pdal_laz2dem.py --buffer=30 --cores=8 --resolution=0.5
+
+Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää tätä ominaisuutta esimerkiksi eri asetusten vaikutusten testaamiseen.
+
 
 
 
