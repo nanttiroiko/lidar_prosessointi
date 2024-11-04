@@ -21,7 +21,7 @@ Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja ase
 
 ## Kansiorakenne ja aineiston järjestäminen
 Jotta skripti toimisi oikein, käsiteltävät tiedostot tulee järjestää kansioihin tietyllä tavalla. Skripti olettaa, että aineistot on järjestetty työskentelykansion sisällä erillisiin kansioihin aineiston tyypin perusteella seuraavasti:
-- 0_lidar (laserkeilausaineisto -laz/-las -tiedostoina)
+- 0_lidar (laserkeilausaineisto -laz -tiedostoina)
 - 1_dem (korkeusmallit geotiffeinä)
 - 2_visualisoinnit (valmiit visualisoinnit geotiffeinä)
 
