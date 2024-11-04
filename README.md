@@ -49,11 +49,14 @@ pdal_laz2dem.py tekee lidar/ -kansioon tallennetuista .laz päätteisistä tiedo
 
 Skripti suoritetaan komennolla: python pdal_laz2dem.py
 
-Skriptille voi antaa seuraavat valinnaiset parametrit, jotka vaikuttavat skriptin toimintaan ja pintamallien ominaisuuksiin.
+Skriptille voi antaa seuraavat valinnaiset parametrit, jotka vaikuttavat skriptin toimintaan ja pintamallien ominaisuuksiin:
 - --buffer      (default=0)
+- - sddgsds
 - --cores       (default=4)
 - --crs         (default=3067, ts. ETRS-TM35FIN / EPSG:3067)
 - --resolution  (default=1)
+
+Lisäparametrien vaikutukset:
 
 
 
