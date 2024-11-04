@@ -12,11 +12,11 @@ Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaper�
 
 ## Python -ympäristön luominen
 
-Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineistojen käsittelyyn tarvittavat paketit (pdal). Alla on yksityiskohtiaset ohjeet python ympäristön luomiseen Anacondan avulla. 
+Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineistojen käsittelyyn tarvittavat paketit (pdal, gdal, numpy, geopandas). Alla on yksityiskohtiaset ohjeet python ympäristön luomiseen Anacondan avulla. 
 
 - Asenna Anaconda https://docs.anaconda.com/anaconda/install/
 - Käynnistä Anaconda prompt
-- Tee uusi Python ympäristö komennolla: conda create -n pdal pdal geopandas numpy
+- Tee uusi Python ympäristö komennolla: conda create -n pdal pdal gdal ygeopandas numpy
 Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja asentaa siihen tarvittavat paketit (pdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
 
 ## Kansiorakenne ja aineiston järjestäminen
@@ -40,8 +40,6 @@ Kun aloitat skriptien käytön, aktivoi aina ensin python-ympäristö ja aseta t
 
 Tämän jälkeen voit suorittaa skriptejä komennolla: python skriptin_nimi_tähän.py 
 
-Osa skripteistä mahdollistaa oletusasetusten muuttamisen antamalla skriptille valinnaisia argumentteja. Argumentit kirjoitetaan kometoriville varsinaisen komennon perään. 
-
 Tarkemmat ohjeet skriptien käyttöön ja mahdolliset lisävalinnat on esitetty alla.
 
 ## pdal_laz2dem.py
@@ -63,6 +61,10 @@ Skriptille voi antaa seuraavat valinnaiset parametrit, jotka vaikuttavat skripti
 Lisäparametrit annetaan varsinaisen komennon jälkeen, esim: python pdal_laz2dem.py --buffer=30 --cores=8 --resolution=0.5
 
 Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää tätä ominaisuutta esimerkiksi eri asetusten vaikutusten testaamiseen.
+
+## dem2tpi.py
+
+
 
 
 
