@@ -2,7 +2,7 @@
 
 Tähän on koottu joitakin hyödyllisiä skriptejä LiDAR -aineistojen tehokkaaseen käsittelyyn ilmaisilla avoimen lähdekoodin työkaluilla (esim. PDAL).
 
-Skriptit on tehty erityisesti suuria tiedostomääriä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti kaikki käsiteltävänä oleva aineisto. Skriptit myös mahdollistavat usean tiedoston käsittelemisen samanaikaisesti, mikä parhaimmillaan nopeuttaa prosessointia huomattavasti. Prosessoinnin nopeus voi kuitenkin vaihdella huomattavasti käytetyn tietokoneen ominaisuuksien ja parametrien mukaan.
+Skriptit on tehty erityisesti suuria tiedostomääriä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti kaikki käsiteltävänä oleva aineisto. Lisäksi skriptit mahdollistavat usean tiedoston käsittelemisen samanaikaisesti, mikä parhaimmillaan nopeuttaa prosessointia huomattavasti. Prosessoinnin nopeus voi kuitenkin vaihdella huomattavasti käytetyn tietokoneen ominaisuuksien ja parametrien mukaan.
 
 Tällä hetkellä skriptien valikoima on melko rajattu ja tehty lähinnä arkeologien tarpeita ajatellen. Valikoimaan lisätään mahdollisesti myöhemmin muita skriptejä, mutta voit yhtä hyvin jatkaa aineiston käsittelyä myös muilla ohjelmilla (esim. QGIS)
 
