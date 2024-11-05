@@ -1,12 +1,12 @@
 # lidar_prosessointi
 
-Kokoan tähän joitakin hyödyllisiä skriptejä LiDAR -aineistojen käsittelyyn ilmaisilla avoimen lähdekoodin työkaluilla (esim. PDAL).
+Tähän on koottu joitakin hyödyllisiä skriptejä LiDAR -aineistojen tehokkaaseen käsittelyyn ilmaisilla avoimen lähdekoodin työkaluilla (esim. PDAL).
 
-Skriptit on tehty ensisijaisesti arkeologien tarpeisiin, mutta soveltuvat sellaisenaan tai muokattuna muihinkin tarkoituksiin.
+Skriptit on tehty erityisesti suuria tiedostomääriä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti kaikki käsiteltävänä oleva aineisto. Skriptit myös mahdollistavat usean tiedoston käsittelemisen samanaikaisesti, mikä parhaimmillaan nopeuttaa prosessointia huomattavasti. Prosessoinnin nopeus voi kuitenkin vaihdella huomattavasti käytetyn tietokoneen ominaisuuksien ja parametrien mukaan.
 
-Skriptit on laadittu suurien tiedostomäärien käsittelyä ajatellen - eli yhdellä komennolla käsitellään lähtökohtaisesti kaikki käsiteltävänä oleva aineisto.  Skriptit mahdollistavat usean tiedoston käsittelyn samanaikaisesti, mikä jonkin verran nopeuttaa prosessointia. 
+Tällä hetkellä skriptien valikoima on melko rajattu ja tehty lähinnä arkeologien tarpeita ajatellen. Valikoimaan lisätään mahdollisesti myöhemmin muita skriptejä, mutta voit yhtä hyvin jatkaa aineiston käsittelyä myös muilla ohjelmilla (esim. QGIS)
 
-Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaperäiset ohjeet, joita noudattamalla skriptejä on mahdollista käyttää ilman aiempaa kokemusta ohjelmoinnista tai komentorivin käytöstä. 
+Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaperäiset ohjeet, joita noudattamalla skriptejä on mahdollista käyttää ilman aiempaa kokemusta ohjelmoinnista tai komentorivin käytöstä. Myös skriptien käyttö on pyritty pitämään mahdollisimman yksinkertaisena ja yhtenäisenä.
 
 # Esivalmistelut
 
@@ -45,14 +45,14 @@ Tämän jälkeen voit suorittaa skriptejä komennolla: python skriptin_nimi_täh
 
 Tarkemmat ohjeet skriptien käyttöön ja mahdolliset lisävalinnat on esitetty alla.
 
-## pdal_laz2dem.py
+## laz2dem.py
 
-pdal_laz2dem.py tekee lidar/ -kansioon tallennetuista .laz päätteisistä tiedostoista pintamallit ja tallentaa ne kansioon dem/.
+laz2dem.py tekee lidar/ -kansioon tallennetuista .laz päätteisistä tiedostoista pintamallit ja tallentaa ne kansioon dem/.
 
 Skripti suoritetaan komennolla: 
-   - python pdal_laz2dem.py
+   - python laz2dem.py
 
-Skriptille voi antaa seuraavat valinnaiset parametrit. Nämä vaikuttavat skriptin toimintaan ja pintamallien ominaisuuksiin:
+Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --buffer      (default=0)
   - Laserkeilaustiilten käsittelyssä käytettävä bufferi. Käytettäessä bufferia pintamallin muodostamiseen käytetään myös käsiteltävää tiiltä ympäröivät pisteet, jolloin myös pintamalleista tulee alkuperäistä laserkeilaustiiltä laajempia. Bufferin käytöstä on hyötyä esimerkiksi tiettyjen visualisointitekniikoiden kanssa (esim. TPI), jotta vältytään poikkeamilta käsitetävien tiilien reunoilla. Bufferin koko annetaan metreissä. Bufferin käyttö hidastaa jonkin verran käsittelyä.
 - --cores       (default=4)
@@ -66,7 +66,32 @@ Lisäparametrit annetaan varsinaisen komennon jälkeen, esim: python pdal_laz2de
 
 Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää tätä ominaisuutta esimerkiksi eri asetusten vaikutusten testaamiseen.
 
+laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: https://pdal.io/
+
 ## dem2tpi.py
+
+dem2tpi.py laskee dem/ -kansioon tallennetuista .tif päätteisistä korkeusmalleista topographic position indexin (TPI) ja tallentaa sen uuteen kansioon. Uusi kansio nimetään TPI:n laskennassa käytettyjen parametrien perusteella.
+
+TPI on hyödyllinen tekniikka lähiympäristöön korkeampien tai matalampien maastonmuotojen visualisointiin. Topographic position index lasketaan vertaamalla korkeusmallin jokaisen solun korkeutta sen ympäristön solujen korkeuksien keskiarvoon. Lähiympäristön tarkasteluun käytettävää sädettä muuttamalla TPI:n avulla voidaan korostaa hyvin eri kokoisia maastonmuotoja. Esimerkiksi 5 metrin sädettä käyttämällä TPI korostaa paikallisia mittakaavaltaan pieniä maastonmuotoja, mutta ei juurikaan reagoi suurempiin maastonmuotoihin. Vastaavasti suurempaa sädettä käytettäessä TPI korostaa mittakaavaltaan suurempia maastonmuotoja. 
+
+Skripti suoritetaan komennolla: 
+   - python dem2tpi.py --radius=7
+
+Pakolliset parametrit
+- --radius
+  - määrittää TPI:n laskentaan käytettävän säteen metreinä. Esimerkiksi arkeologisesti kiinnostavien pinnanmuotojen visualisointiin radius on tyypillisesti hyvä asettaa välille 5-15.
+  - Huomioithan, että suurempi radius kasvattaa huomattavasti prosessointiin kuluvaa aikaa.
+  - HUOM! Tämä versio skriptistä soveltuu lähinnä suhteellisen pienten ja paikallisten korkeuserojen visualisointiin, koska tulokset normitetaan vakioidulla kaavalla tietylle vaihteluvälille. 
+
+Skriptille voi antaa seuraavat valinnaiset parametrit:
+- --cores       (default=4)
+  - Rinnakkain käsiteltävien tiedostojen määrä. Tällä asetuksella voit vaikuttaa huomattavasti prosessoinnin nopeuteen. Rinnakkain käsiteltävien tiedostojen määrän tulisi olla korkeintaan yhtä suuri kuin tietokoneen loogisten suorittimien määrä, minkä voit tarkistaa esimerkiksi tehtävienhallinnasta. Huomaa kuitenkin, että tietokoneen ominaisuuksista riippuen maksimia pienempi rinnakkain käsiteltävien tiedostojen määrä voi olla kokonaisuutena nopeampi.
+- --crs         (default=3067, ts. ETRS-TM35FIN / EPSG:3067)
+  - Tällä asetuksella voit asettaa haluamasi koordinaattijärjestelmän. Koordinaattijärjestelmän asettamiseen käytetään EPSG-numerokoodia. 
+
+
+
+
 
 
 
