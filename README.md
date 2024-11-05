@@ -12,7 +12,7 @@ Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaper�
 
 ## Python -ympäristön luominen
 
-Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineistojen käsittelyyn tarvittavat paketit (pdal, gdal, numpy, geopandas). Alla on yksityiskohtiaset ohjeet python ympäristön luomiseen Anacondan avulla. 
+Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineistojen käsittelyyn tarvittavat paketit (pdal, gdal, numpy, geopandas, rasterio). Alla on yksityiskohtiaset ohjeet python ympäristön luomiseen Anacondan avulla. 
 
 - Asenna Anaconda https://docs.anaconda.com/anaconda/install/
 - Käynnistä Anaconda prompt
