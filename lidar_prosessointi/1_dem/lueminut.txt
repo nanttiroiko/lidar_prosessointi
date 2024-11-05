@@ -1,2 +1,0 @@
-Tähän kansioon tallennetaan korkeusmallit geotiffeinä.
-Älä käytä muiden aineistojen säilyttämiseen.
