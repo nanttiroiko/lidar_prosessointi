@@ -1,0 +1,1 @@
+Tallenna käsiteltävät .laz -tiedostot tähän kansioon.
