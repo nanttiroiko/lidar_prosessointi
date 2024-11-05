@@ -64,7 +64,7 @@ Skriptille voi antaa seuraavat valinnaiset parametrit:
 
 Lisäparametrit annetaan varsinaisen komennon jälkeen, esim: python pdal_laz2dem.py --buffer=30 --cores=8 --resolution=0.5
 
-Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää tätä ominaisuutta esimerkiksi eri asetusten vaikutusten testaamiseen.
+Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää ominaisuutta esimerkiksi asetusten vaikutusten testaamiseen.
 
 laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: https://pdal.io/
 
@@ -81,13 +81,17 @@ Pakolliset parametrit
 - --radius
   - määrittää TPI:n laskentaan käytettävän säteen metreinä. Esimerkiksi arkeologisesti kiinnostavien pinnanmuotojen visualisointiin radius on tyypillisesti hyvä asettaa välille 5-15.
   - Huomioithan, että suurempi radius kasvattaa huomattavasti prosessointiin kuluvaa aikaa.
-  - HUOM! Tämä versio skriptistä soveltuu lähinnä suhteellisen pienten ja paikallisten korkeuserojen visualisointiin, koska tulokset normitetaan vakioidulla kaavalla tietylle vaihteluvälille. 
+  - HUOM! Tämä versio skriptistä soveltuu lähinnä suhteellisen pienten ja paikallisten korkeuserojen visualisointiin, koska tulokset skaalataan vakioidulla kaavalla tietylle vaihteluvälille. 
 
 Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --cores       (default=4)
   - Rinnakkain käsiteltävien tiedostojen määrä. Tällä asetuksella voit vaikuttaa huomattavasti prosessoinnin nopeuteen. Rinnakkain käsiteltävien tiedostojen määrän tulisi olla korkeintaan yhtä suuri kuin tietokoneen loogisten suorittimien määrä, minkä voit tarkistaa esimerkiksi tehtävienhallinnasta. Huomaa kuitenkin, että tietokoneen ominaisuuksista riippuen maksimia pienempi rinnakkain käsiteltävien tiedostojen määrä voi olla kokonaisuutena nopeampi.
 - --crs         (default=3067, ts. ETRS-TM35FIN / EPSG:3067)
-  - Tällä asetuksella voit asettaa haluamasi koordinaattijärjestelmän. Koordinaattijärjestelmän asettamiseen käytetään EPSG-numerokoodia. 
+  - Tällä asetuksella voit asettaa haluamasi koordinaattijärjestelmän. Koordinaattijärjestelmän asettamiseen käytetään EPSG-numerokoodia.
+ 
+Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää ominaisuutta esimerkiksi asetusten vaikutusten testaamiseen.
+
+dem2tpi.py perustuu Zoran Čučkovićin numpy-kirjastoa hyödyntävään tapaan laskea TPI. Oleellisimpana erona alkuperäiseen tässä esitetty versio skriptistä mahdollistaa suoraan usean tiedoston rinnakkaisen käsittelyn ja skaalaa tulokset vakioidulla kaavalla kokonaisluvuiksi väliltä +/- 100.
 
 
 
