@@ -91,7 +91,7 @@ Skriptille voi antaa seuraavat valinnaiset parametrit:
  
 Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää ominaisuutta esimerkiksi asetusten vaikutusten testaamiseen.
 
-dem2tpi.py perustuu Zoran Čučkovićin numpy-kirjastoa hyödyntävään tapaan laskea TPI. Oleellisimpana erona alkuperäiseen tässä esitetty versio skriptistä mahdollistaa suoraan usean tiedoston rinnakkaisen käsittelyn ja skaalaa tulokset vakioidulla kaavalla kokonaisluvuiksi väliltä +/- 100.
+dem2tpi.py perustuu Zoran Čučkovićin numpy-kirjastoa hyödyntävään tapaan laskea TPI (https://landscapearchaeology.org/2021/python-tpi/). Oleellisimpana erona alkuperäiseen tässä esitetty versio skriptistä mahdollistaa suoraan usean tiedoston rinnakkaisen käsittelyn ja skaalaa tulokset vakioidulla kaavalla kokonaisluvuiksi väliltä +/- 100.
 
 
 
