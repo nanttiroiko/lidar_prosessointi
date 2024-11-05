@@ -52,7 +52,7 @@ pdal_laz2dem.py tekee lidar/ -kansioon tallennetuista .laz päätteisistä tiedo
 Skripti suoritetaan komennolla: 
    - python pdal_laz2dem.py
 
-Skriptille voi antaa seuraavat valinnaiset parametrit, jotka vaikuttavat skriptin toimintaan ja pintamallien ominaisuuksiin:
+Skriptille voi antaa seuraavat valinnaiset parametrit. Nämä vaikuttavat skriptin toimintaan ja pintamallien ominaisuuksiin:
 - --buffer      (default=0)
   - Laserkeilaustiilten käsittelyssä käytettävä bufferi. Käytettäessä bufferia pintamallin muodostamiseen käytetään myös käsiteltävää tiiltä ympäröivät pisteet, jolloin myös pintamalleista tulee alkuperäistä laserkeilaustiiltä laajempia. Bufferin käytöstä on hyötyä esimerkiksi tiettyjen visualisointitekniikoiden kanssa (esim. TPI), jotta vältytään poikkeamilta käsitetävien tiilien reunoilla. Bufferin koko annetaan metreissä. Bufferin käyttö hidastaa jonkin verran käsittelyä.
 - --cores       (default=4)
