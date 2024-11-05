@@ -25,12 +25,10 @@ Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja ase
 Jotta skripti toimisi oikein, käsiteltävät tiedostot tulee järjestää kansioihin tietyllä tavalla. Skripti olettaa, että aineistot on järjestetty työskentelykansion sisällä erillisiin kansioihin aineiston tyypin perusteella seuraavasti:
 - lidar (laserkeilausaineisto -laz -tiedostoina)
 - dem (korkeusmallit geotiffeinä)
-- visualisoinnit (valmiit visualisoinnit)
-- temp (väliaikaistiedostot)
 
 Varsinaiset skriptit (eli .py -päätteiset tiedostot) tallenetaan suoraan työskentelykansioon.
 
-Skriptit käsittelevät oletuksena kaiken kansioihin tallennetun aineiston (jolla on oletettu tiedostopääte). Tästä syystä työskentelykansiota ei kannata käyttää aineistojen säilyttämiseen, eli kopioi työskentelykansioon vain se aineisto, minkä haluat käsitellä.
+Skriptit käsittelevät oletuksena kaiken kansioihin tallennetun aineiston (jolla on oletettu tiedostopääte). Tästä syystä työskentelykansiota ei kannata käyttää aineistojen säilyttämiseen, eli kopioi työskentelykansioon vain se aineisto, minkä haluat käsitellä. Tuloksia sekä mahdollisia väliaikaistiedostoja varten tarvittavat kansiot luodaan lähtökohtaisesti automaattisesti.
 
 Voit kopioida valmiin kansiorakenteen suoraan Githubista. Skriptit luovat tarvittaessa tuloksia ja väliaikaistiedostoja tarvittavat kansiot itse.
 
