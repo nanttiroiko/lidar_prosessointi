@@ -39,7 +39,7 @@ Voit kopioida valmiin kansiorakenteen suoraan Githubista. Skriptit luovat tarvit
 Kun aloitat skriptien käytön, aktivoi aina ensin python-ympäristö ja aseta työskentelykansio.
 - Avaa Anaconda prompt (ts. Anacondan oma 'komentorivi') ja aktivoi aiemmin luomasi python-ympäristö komennolla: conda activate pdal
 - Aseta työskentelykansio komennolla: cd C:\lisää\oikea\polku\tähän
-  - (esim. cd C:\users\kayttajatunnus\lidar_prosessointi)
+  - esim. cd C:\users\kayttajatunnus\lidar_prosessointi
 
 Tämän jälkeen voit suorittaa skriptejä komennolla: python skriptin_nimi_tähän.py 
 
