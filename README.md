@@ -83,7 +83,7 @@ Yksittäisen visualisoinnin tekeminen
 ```shell
 python dem2rvt.py --visualisoinnit=hillshade
 ```
-Useampien visualisointien tekeminen yhdellä komennolla on mahdollista käyttäen erottimena puolipistettä (;)
+Useampien visualisointien tekeminen yhdellä komennolla on mahdollista käyttäen erottimena puolipistettä
 ```shell
 python dem2rvt.py --visualisoinnit=slope;hillshade
 ```
