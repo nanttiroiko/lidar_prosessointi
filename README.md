@@ -17,7 +17,9 @@ Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineist
 - Asenna Anaconda https://docs.anaconda.com/anaconda/install/
 - Käynnistä Anaconda prompt
 - Tee uusi Python ympäristö komennolla:
-  - conda create -n pdal -c conda-forge pdal gdal geopandas numpy rasterio affine
+```shell
+conda create -n pdal -c conda-forge pdal gdal geopandas numpy rasterio affine
+```
 
 Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja asentaa siihen tarvittavat paketit (pdal, gdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
 
@@ -35,9 +37,14 @@ Voit kopioida valmiin kansiorakenteen suoraan Githubista. Skriptit luovat tarvit
 # Skriptien suorittaminen
 
 Kun aloitat skriptien käytön, aktivoi aina ensin python-ympäristö ja aseta työskentelykansio.
-- Avaa Anaconda prompt (ts. Anacondan oma 'komentorivi') ja aktivoi aiemmin luomasi python-ympäristö komennolla: conda activate pdal
-- Aseta työskentelykansio komennolla: cd C:\lisää\oikea\polku\tähän
-  - esim. cd C:\users\kayttajatunnus\lidar_prosessointi
+- Avaa Anaconda prompt (ts. Anacondan oma 'komentorivi') ja aktivoi aiemmin luomasi python-ympäristö komennolla:
+```shell
+conda activate pdal
+```
+- Aseta työskentelykansio komennolla cd C:\lisää\oikea\polku\tähän, esim:
+```shell
+cd C:\users\kayttajatunnus\lidar_prosessointi
+```
 
 Tämän jälkeen voit suorittaa skriptejä komennolla: python skriptin_nimi_tähän.py 
 
@@ -48,7 +55,9 @@ Tarkemmat ohjeet skriptien käyttöön ja mahdolliset lisävalinnat on esitetty 
 laz2dem.py tekee lidar/ -kansioon tallennetuista .laz päätteisistä tiedostoista pintamallit ja tallentaa ne kansioon dem/.
 
 Skripti suoritetaan komennolla: 
-   - python laz2dem.py
+```shell
+python laz2dem.py
+```
 
 Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --buffer      (default=0)
@@ -73,13 +82,15 @@ dem2tpi.py laskee dem/ -kansioon tallennetuista .tif päätteisistä korkeusmall
 TPI on hyödyllinen tekniikka lähiympäristöön korkeampien tai matalampien maastonmuotojen visualisointiin. Topographic position index lasketaan vertaamalla korkeusmallin jokaisen solun korkeutta sen ympäristön solujen korkeuksien keskiarvoon. Lähiympäristön tarkasteluun käytettävää sädettä muuttamalla TPI:n avulla voidaan korostaa hyvin eri kokoisia maastonmuotoja. Esimerkiksi 5 metrin sädettä käyttämällä TPI korostaa paikallisia mittakaavaltaan pieniä maastonmuotoja, mutta ei juurikaan reagoi suurempiin maastonmuotoihin. Vastaavasti suurempaa sädettä käytettäessä TPI korostaa mittakaavaltaan suurempia maastonmuotoja. 
 
 Skripti suoritetaan komennolla: 
-   - python dem2tpi.py --radius=7
+```shell
+python dem2tpi.py --radius=7
+```
 
 Pakolliset parametrit
 - --radius
   - määrittää TPI:n laskentaan käytettävän säteen metreinä. Esimerkiksi arkeologisesti kiinnostavien pinnanmuotojen visualisointiin radius on tyypillisesti hyvä asettaa välille 5-15.
-  - Huomioithan, että suurempi radius kasvattaa huomattavasti prosessointiin kuluvaa aikaa.
-  - HUOM! Tämä versio skriptistä soveltuu lähinnä suhteellisen pienten ja paikallisten korkeuserojen visualisointiin, koska tulokset skaalataan vakioidulla kaavalla tietylle vaihteluvälille. 
+  - Huomioithan, että suurempi radius kasvattaa prosessointiin kuluvaa aikaa.
+  - HUOM! Tämä versio skriptistä soveltuu lähinnä suhteellisen pienten ja paikallisten korkeuserojen visualisointiin, koska tulokset skaalataan vakioidulla kaavalla tietylle vaihteluvälille. Yleisempään TPI tarpeeseen sopii paremmin esimerkiksi RVT-py perustuva versio TPI laskennasta.
 
 Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --cores       (default=4)
