@@ -18,7 +18,7 @@ Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineist
 - Käynnistä Anaconda prompt
 - Tee uusi Python ympäristö komennolla:
 ```shell
-conda create -n pdal -c conda-forge pdal gdal geopandas numpy rasterio affine
+conda create -n pdal -c conda-forge pdal gdal geopandas numpy rasterio affine tqdm
 ```
 
 Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja asentaa siihen tarvittavat paketit (pdal, gdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
@@ -50,7 +50,7 @@ Tämän jälkeen voit suorittaa skriptejä komennolla: python skriptin_nimi_täh
 
 Tarkemmat ohjeet skriptien käyttöön ja mahdolliset lisävalinnat on esitetty alla.
 
-## laz2dem.py
+## laz2dem.py - Pintamallien teko laserkeilausaineistosta
 
 laz2dem.py tekee lidar/ -kansioon tallennetuista .laz päätteisistä tiedostoista pintamallit ja tallentaa ne kansioon dem/.
 
@@ -75,7 +75,22 @@ Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sek�
 
 laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: https://pdal.io/
 
-## dem2tpi.py
+## dem2rvt.py - Pintamallien visualisointi Relief Visualization Toolboxin (RVT) avulla
+
+Yksittäisen visualisoinnin tekeminen
+```shell
+python dem2rvt.py --visualisoinnit=hillshade
+```
+Useampien visualisointien tekeminen yhdellä komennolla on mahdollista käyttäen erottimena puolipistettä (;)
+```shell
+python dem2rvt.py --visualisoinnit=slope;hillshade
+```
+Kaikki RVT:n perusvisualisoinnit voi tehdä kerralla avainsanalla 'kaikki'
+```shell
+python dem2rvt.py --visualisoinnit=kaikki
+```
+
+## dem2tpi.py - Topographic position index
 
 dem2tpi.py laskee dem/ -kansioon tallennetuista .tif päätteisistä korkeusmalleista topographic position indexin (TPI) ja tallentaa sen uuteen kansioon. Uusi kansio nimetään TPI:n laskennassa käytettyjen parametrien perusteella.
 
@@ -90,7 +105,7 @@ Pakolliset parametrit
 - --radius
   - määrittää TPI:n laskentaan käytettävän säteen metreinä. Esimerkiksi arkeologisesti kiinnostavien pinnanmuotojen visualisointiin radius on tyypillisesti hyvä asettaa välille 5-15.
   - Huomioithan, että suurempi radius kasvattaa prosessointiin kuluvaa aikaa.
-  - HUOM! Tämä versio skriptistä soveltuu lähinnä suhteellisen pienten ja paikallisten korkeuserojen visualisointiin, koska tulokset skaalataan vakioidulla kaavalla tietylle vaihteluvälille. Yleisempään TPI tarpeeseen sopii paremmin esimerkiksi RVT-py perustuva versio TPI laskennasta.
+  - HUOM! Tämä versio skriptistä soveltuu lähinnä suhteellisen pienten ja paikallisten korkeuserojen visualisointiin, koska tulokset skaalataan vakioidulla kaavalla tietylle vaihteluvälille. Muihin tarpeisiin on parempi käyttää RVT:n simple local relief model -visualisointia, joka on käytännössä sama asia.
 
 Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --cores       (default=4)
