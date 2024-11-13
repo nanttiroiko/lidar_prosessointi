@@ -16,12 +16,12 @@ Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineist
 
 - Asenna Anaconda https://docs.anaconda.com/anaconda/install/
 - Käynnistä Anaconda prompt
-- Tee uusi Python ympäristö komennolla:
+- Tee uusi Python ympäristö seuraavalla komennolla:
 ```shell
 conda create -n lidar -c conda-forge pdal gdal geopandas numpy rasterio affine tqdm
 ```
 
-Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'lidar' ja asentaa siihen tarvittavat paketit (pdal, gdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
+Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'lidar' ja asentaa siihen tarvittavat paketit (pdal, gdal, geopandas, numpy & tqdm). Hyväksy ympäristön luominen painamalla 'y'.
 
 ## Kansiorakenne ja aineiston järjestäminen
 Jotta skripti toimisi oikein, käsiteltävät tiedostot tulee järjestää kansioihin tietyllä tavalla. Skripti olettaa, että aineistot on järjestetty työskentelykansion sisällä erillisiin kansioihin aineiston tyypin perusteella seuraavasti:
