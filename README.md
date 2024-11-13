@@ -77,7 +77,7 @@ laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: ht
 
 ## dem2rvt.py - Pintamallien visualisointi Relief Visualization Toolboxin (RVT) avulla
 
-dem2rvt.py mahdollistaa erilaisten visualisointien tuottamisen Relief Visualization Toolboxin (RVT) avulla (https://rvt-py.readthedocs.io/en/latest/index.html).
+dem2rvt.py mahdollistaa erilaisten visualisointien tuottamisen Relief Visualization Toolboxin (RVT) avulla (https://rvt-py.readthedocs.io/en/latest/index.html). RVT tarjoaa erittäin kattavan valikoiman erilaisia visualisointitekniikoita.
 
 Yksittäisen visualisoinnin tekeminen
 ```shell
@@ -87,7 +87,7 @@ Useampien visualisointien tekeminen yhdellä komennolla on mahdollista käyttäe
 ```shell
 python dem2rvt.py --visualisoinnit=slope;hillshade
 ```
-Kaikki RVT:n perusvisualisoinnit voi tehdä kerralla avainsanalla 'kaikki'
+Avainsanalla 'kaikki' voi tehdä yhdellä komennonnolla kaikki RVT:n mahdollistamat visualisoinnit
 ```shell
 python dem2rvt.py --visualisoinnit=kaikki
 ```
