@@ -69,7 +69,11 @@ Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --resolution  (default=1)
   - Laserkeilausaineistosta tuotettavien rasterien resoluutio metreinä. Käytä desimaalierottimena pistettä.
 
-Lisäparametrit annetaan varsinaisen komennon jälkeen, esim: python pdal_laz2dem.py --buffer=30 --cores=8 --resolution=0.5
+
+Lisäparametrit annetaan varsinaisen komennon jälkeen, esim: 
+```shell
+python pdal_laz2dem.py --buffer=30 --cores=8 --resolution=0.5
+```
 
 Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää ominaisuutta esimerkiksi asetusten vaikutusten testaamiseen.
 
