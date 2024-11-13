@@ -5,6 +5,7 @@ import rvt.default
 import numpy as np
 import argparse
 import time
+import os
 from tqdm import tqdm
 
 #poistetaan käytöstä varoitukset, ettei printata turhia gdal varoituskäytönnön muutosinfoja
@@ -22,6 +23,25 @@ def read_dem(dem_path):
     dem_res_y = dem_resolution[1]  # resolution in Y direction
     dem_no_data = dict_dem["no_data"]
     return dict_dem, dem_arr, dem_resolution, dem_res_x, dem_res_y, dem_no_data
+
+def gdal_build_vrt(kansio, pyramidit):
+    """
+    Tekee annetun kansion .tif -päätteisistä tiedostoista virtuaalirasterin ja tallentaa sen samaan kansioon .vrt -muodossa
+    Haluttaessa virtuaalirasterille voidaan tehdä ulkoiset pyramidit, eli karkeammat esikatselukuvat
+    Funktio käyttää suoraan gdalbuildvrt ja gdaladdo -komentoja
+
+    Parametrit:
+    -kansio = kansio, jonka tiedostoja käsitellään. esim. 'hillshade/'
+    -tee_pyramidit = True/False
+    
+    """
+    print('luodaan virtuaalirasteri '+kansio+'/'+kansio+'.vrt')
+    os.system('gdalbuildvrt '+kansio+'/'+kansio+'.vrt '+kansio+'/*.tif')
+
+    if pyramidit:
+        print('luodaan pyramidit virtuaalirasterille '+kansio+'/'+kansio+'.vrt')
+        os.system('gdaladdo -r bilinear '+kansio+'/'+kansio+'.vrt 2 4 8 16 32')
+    
 
 def tallenna_tiedostoon(dem_path, output_path, output_arr, gdal_datatype):
     """
@@ -57,9 +77,6 @@ def slope(kwargs):
     if not 'aspect' in kwargs.keys():
         kwargs['aspect']=False
 
-    #asetaan tulostettavalle tiedostolle output_path
-    output_path='slope/'+Path(kwargs['dem_path']).stem.replace('DEM','slope.tif')
-        
     #luetaan korkeusmalli
     dict_dem, dem_arr, dem_resolution, dem_res_x, dem_res_y, dem_no_data = read_dem(kwargs['dem_path'])
     #lasketaan slope
@@ -68,11 +85,13 @@ def slope(kwargs):
 
     #tallennetaan halutut tulokset tiedostoon ja luodaan tarvittaessa tallennuskansiot
     if kwargs['slope']:
+        #asetaan tulostettavalle tiedostolle output_path
+        output_path='slope/'+Path(kwargs['dem_path']).stem.replace('DEM','slope.tif')
         Path('slope/').mkdir(parents=True, exist_ok=True)
         slope_arr = dict_slope_aspect["slope"]
         tallenna_tiedostoon(kwargs['dem_path'], output_path, slope_arr, kwargs['gdal_datatype'])
     if kwargs['aspect']:
-        Path('slope/').mkdir(parents=True, exist_ok=True)
+        Path('aspect/').mkdir(parents=True, exist_ok=True)
         aspect_arr = dict_slope_aspect["aspect"]
         output_path=output_path.replace('slope','aspect')
         tallenna_tiedostoon(kwargs['dem_path'], output_path, aspect_arr, kwargs['gdal_datatype'])
@@ -175,10 +194,10 @@ def slrm(kwargs):
         kwargs['gdal_datatype']=6
     
     #jos slrm:lle ei ole valmiiksi kansiota, luodaan se
-    Path('simple_relief_model/').mkdir(parents=True, exist_ok=True)
+    Path('simple_local_relief_model/').mkdir(parents=True, exist_ok=True)
 
     #asetaan tulostettavalle tiedostolle output_path
-    output_path='simple_relief_model/'+Path(kwargs['dem_path']).stem.replace('DEM','simple_relief_model.tif')
+    output_path='simple_local_relief_model/'+Path(kwargs['dem_path']).stem.replace('DEM','simple_local_relief_model.tif')
         
     #luetaan korkeusmallin tiedot
     dict_dem, dem_arr, dem_resolution, dem_res_x, dem_res_y, dem_no_data = read_dem(kwargs['dem_path'])
@@ -459,37 +478,68 @@ def rvt_prosessoi(kwargs):
     #listataan käsiteltävät rasterit
     rasterit=glob.glob('dem/*.tif')
 
-    #suoritetaan slope jos tarpeen
-    if 'slope' in metodit or 'kaikki' in metodit:
-        print("Käsitellään slope")
+    #tarkistetaan suoritettavat metodit ja lasketaan visualisoinnit
+    if 'slope' in metodit or 'kaikki' in metodit or 'aspect' in metodit:
+        if 'slope' in metodit or 'kaikki' in metodit:
+            kwargs['slope']=True
+        if 'aspect' in metodit or 'kaikki' in metodit:
+            kwargs['aspect']=True
+        print("Käsitellään slope ja/tai aspect")
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
-            slope(kwargs)   
+            slope(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            if 'slope' in metodit or 'kaikki' in metodit:
+                gdal_build_vrt('slope', kwargs['vrt_pyramidit'])
+            if 'aspect' in metodit or 'kaikki' in metodit:
+                gdal_build_vrt('aspect', kwargs['vrt_pyramidit'])
+            
     if 'hillshade' in metodit or 'kaikki' in metodit:
         print("Käsitellään hillshade")
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
             hillshade(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            gdal_build_vrt('hillshade', kwargs['vrt_pyramidit'])
+            
     if 'multi_hillshade' in metodit or 'mdhs' in metodit or 'kaikki' in metodit:
         print("Käsitellään multi_hillshade (mdhs)")
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
             multi_hillshade(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            gdal_build_vrt('multi_hillshade', kwargs['vrt_pyramidit'])
+            
     if 'simple_local_relief_model' in metodit or 'slrm' in metodit or 'kaikki' in metodit:
         print("Käsitellään simple_local_relief_model (slrm)")
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
             slrm(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            gdal_build_vrt('simple_local_relief_model', kwargs['vrt_pyramidit'])
+        
     if 'multi-scale_relief_model' in metodit or 'msrm' in metodit or 'kaikki' in metodit:
         print("Käsitellään multi-scale_relief_model (msrm)")
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
             msrm(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            gdal_build_vrt('multi-scale_relief_model', kwargs['vrt_pyramidit'])
+            
     if 'multi-scale_topographic_position' in metodit or 'mstp' in metodit or 'kaikki' in metodit:
         print("Käsitellään multi-scale_topographic_position (mstp)")
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
             mstp(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            gdal_build_vrt('multi-scale_topographic_position', kwargs['vrt_pyramidit'])
+            
     if 'sky-view_factor' in metodit or 'anisotropic_sky-view_factor' in metodit or 'openness' in metodit or 'kaikki' in metodit:
         if 'sky-view_factor' in metodit or 'svf' in metodit or 'kaikki' in metodit:
             kwargs['compute_svf']=True
@@ -501,19 +551,65 @@ def rvt_prosessoi(kwargs):
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
             svf(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            if 'sky-view_factor' in metodit or 'svf' in metodit or 'kaikki' in metodit:
+                gdal_build_vrt('sky-view_factor', kwargs['vrt_pyramidit'])
+            if 'anisotropic_sky-view_factor' in metodit or 'asvf' in metodit or 'kaikki' in metodit:
+                gdal_build_vrt('anisotropic_sky-view_factor', kwargs['vrt_pyramidit'])
+            if 'openness' in metodit or 'kaikki' in metodit:
+                gdal_build_vrt('positive_openness', kwargs['vrt_pyramidit'])
+                gdal_build_vrt('negative_openness', kwargs['vrt_pyramidit'])
+            
     if 'local_dominance' in metodit or 'kaikki' in metodit:
         print("Käsitellään local_dominance")
         for i in tqdm(range(len(rasterit))):
             kwargs['dem_path']=rasterit[i]
             dominance(kwargs)
+        #lasketaan tarvittaessa vrt ja pyramidit
+        if kwargs['vrt']:
+            gdal_build_vrt('local_dominance', kwargs['vrt_pyramidit'])
 
 if __name__ == '__main__':
     start = time.time()
     parser = argparse.ArgumentParser()
     #parser.add_argument('-c', '--cores', default=2, type=int) # säikeiden määrä, oletuksena 2, joka lienee ok useimmilla perustietokoneilla
     parser.add_argument('-v', '--visualisoinnit', default='hillshade', type=str) # säikeiden määrä, oletuksena 4, joka lienee ok useimmilla perustietokoneilla
-    kwargs = parser.parse_args()
-    kwargs=vars(kwargs)
+    parser.add_argument('--vrt', default=True, type=bool) # luodaanko käsittelyn jälkeen virtuaalirasteri
+    parser.add_argument('--vrt_pyramidit', default=True, type=bool) # luodaanko virtuaalirasterille pyramidit
+    parser.add_argument('--gdal_datatype', type=int) #kaikki - tulostettavan tiedoston GDAL datyyppikoodi oletuksena visualisoinneissa yleensä 6, eli float32
+    parser.add_argument('--ve_factor', type=float)   #monet - vertical exaggeration factor korkeuserojen liioitteluun käytettävä kerroin
+    parser.add_argument('--output_units', type=str)  #slope - tulosten ilmoittamiseen käytetty yksikkö. vaihtoehdot 'degree', 'radian', 'percent'
+    parser.add_argument('--sun_azimuth', type=int)   #hillshade - valonlähteen suunta/atsimuutti asteina
+    parser.add_argument('--sun_elevation', type=int) #hillshade, mdhs - valonlähteen korkeus horisontista asteina
+    parser.add_argument('--nr_directions', type=int) #multihillshade - valaisusuuntien määrä
+    parser.add_argument('--radius_cell', type=int)   #slrm - laskentaan käytetty säde soluina/pikseleinä
+    parser.add_argument('--feature_min', type=int)   #msrm - tarkasteltavien ilmiöiden oletettu minimikoko
+    parser.add_argument('--feature_max', type=int)   #msrm - tarkasteltavien ilmiöiden oletettu maksimikoko
+    parser.add_argument('--scaling_factor', type=int)#msrm - 
+    parser.add_argument('--local_scale', type=tuple) #mstp - tuple (min, max, step)
+    parser.add_argument('--meso_scale', type=tuple)  #mstp - tuple (min, max, step)
+    parser.add_argument('--broad_scale', type=tuple) #mstp - tuple (min, max, step)
+    parser.add_argument('--lightness', type=float)   #mstp - lightness parametri
+    parser.add_argument('--svf_n_dir', type=int)     #svf, asvf, opns
+    parser.add_argument('--svf_r_max', type=int)     #svf, asvf, opns
+    parser.add_argument('--svf_noise', type=int)     #svf, asvf, opns
+    parser.add_argument('--asvf_level', type=int)    #asvf - anisotropian taso 1-matala 2-korkea
+    parser.add_argument('--asvf_dir', type=int)      #asvf - anisotropian suunta asteina
+    parser.add_argument('--min_rad', type=int)       #dominance - minimi säteittäinen etäisyys
+    parser.add_argument('--max_rad', type=int)       #dominance - maksimi säteittäinen etäisyys
+    parser.add_argument('--rad_inc', type=int)       #dominance - säteittäisen etäisyyden askelkoko pikseleinä
+    parser.add_argument('--angular_res', type=int)   #dominance - tarkasteltavien suuntien välinen kulma
+    parser.add_argument('--observer_height', type=float) #dominance -tarkastelupisteen korkeus
+
+
+    #muotoillaan argiumenttihakemistoa poistamalla ne, joita ei saatu syötteenä
+    temp_kwargs = parser.parse_args()
+    temp_kwargs=vars(temp_kwargs)
+    kwargs={}
+    for kw in temp_kwargs:
+        if temp_kwargs[kw] != None:
+            kwargs[kw]=temp_kwargs[kw]
     
     print('Asetukset: '+ str(kwargs))
     
