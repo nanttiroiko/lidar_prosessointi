@@ -18,10 +18,10 @@ Skriptit tarvitsevat toimiakseen Python-ympäristön, johon on asennettu aineist
 - Käynnistä Anaconda prompt
 - Tee uusi Python ympäristö komennolla:
 ```shell
-conda create -n pdal -c conda-forge pdal gdal geopandas numpy rasterio affine tqdm
+conda create -n lidar -c conda-forge pdal gdal geopandas numpy rasterio affine tqdm
 ```
 
-Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'pdal' ja asentaa siihen tarvittavat paketit (pdal, gdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
+Tällä komennolla Anaconda luo uuden Python ympäristön nimeltä 'lidar' ja asentaa siihen tarvittavat paketit (pdal, gdal, geopandas, numpy). Hyväksy ympäristön luominen painamalla 'y'.
 
 ## Kansiorakenne ja aineiston järjestäminen
 Jotta skripti toimisi oikein, käsiteltävät tiedostot tulee järjestää kansioihin tietyllä tavalla. Skripti olettaa, että aineistot on järjestetty työskentelykansion sisällä erillisiin kansioihin aineiston tyypin perusteella seuraavasti:
@@ -39,7 +39,7 @@ Voit kopioida valmiin kansiorakenteen suoraan Githubista. Skriptit luovat tarvit
 Kun aloitat skriptien käytön, aktivoi aina ensin python-ympäristö ja aseta työskentelykansio.
 - Avaa Anaconda prompt (ts. Anacondan oma 'komentorivi') ja aktivoi aiemmin luomasi python-ympäristö komennolla:
 ```shell
-conda activate pdal
+conda activate lidar
 ```
 - Aseta työskentelykansio komennolla cd C:\lisää\oikea\polku\tähän, esim:
 ```shell
@@ -77,7 +77,9 @@ laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: ht
 
 ## dem2rvt.py - Pintamallien visualisointi Relief Visualization Toolboxin (RVT) avulla
 
-dem2rvt.py mahdollistaa erilaisten visualisointien tuottamisen Relief Visualization Toolboxin (RVT) avulla (https://rvt-py.readthedocs.io/en/latest/index.html). RVT tarjoaa erittäin kattavan valikoiman erilaisia visualisointitekniikoita.
+dem2rvt.py mahdollistaa erilaisten visualisointien tuottamisen Relief Visualization Toolboxin (RVT) avulla. RVT tarjoaa erittäin kattavan valikoiman erilaisia visualisointitekniikoita, jotka on listattu alla. Lisätietoa RVT:stä ja RVT:n avulla tehtävistä visualisoinneista: https://rvt-py.readthedocs.io/en/latest/index.html
+
+Esimerkkejä dem2rvt.py käytöstä:
 
 Yksittäisen visualisoinnin tekeminen
 ```shell
@@ -90,6 +92,78 @@ python dem2rvt.py --visualisoinnit=slope;hillshade
 Avainsanalla 'kaikki' voi tehdä yhdellä komennonnolla kaikki RVT:n mahdollistamat visualisoinnit
 ```shell
 python dem2rvt.py --visualisoinnit=kaikki
+```
+
+### Vinovalovarjoste / hillshade
+
+Laskee korkeusmallista vinovalovarjosteen ja tallentaa tuloksen kansioon hillshade/
+
+```shell
+python dem2rvt.py --visualisoinnit=hillshade
+```
+
+### Monisuuntainen vinovalovarjoste / multiple direction hillshade (mdhs)
+Laskee korkeusmallista useasta suunnasta valaistun vinovalovarjosteen ja tallentaa sen kansioon multi_hillshade/
+
+```shell
+python dem2rvt.py --visualisoinnit=multi_hillshade
+python dem2rvt.py --visualisoinnit=mdhs
+```
+
+### Rinteenkaltevuus / slope
+Laskee korkeusmallista rinteenkaltevuuden (slope) ja tallentaa sen kansioon slope/
+
+```shell
+python dem2rvt.py --visualisoinnit=slope
+```
+
+### Simple local relief model (slrm)
+Laskee korkeusmallista simple relief modelin (slrm) ja tallentaa sen kansioon simple_relief_model. Slrm lasketaan vertaamalla jokaisen solun korkeutta sitä ympäröivien solujen korkeuksien keskiarvoon halutulla säteellä. 
+
+```shell
+python dem2rvt.py --visualisoinnit=simple_local_relief_model
+python dem2rvt.py --visualisoinnit=slrm
+```
+
+### Multi-scale relief model (msrm)
+Laskee korkeusmallista multi-scale relief modelin (msrm) ja tallentaa sen kansioon multi-scale_relief_model.
+
+```shell
+python dem2rvt.py --visualisoinnit=multi-scale_relief_model
+python dem2rvt.py --visualisoinnit=msrm
+```
+
+### Sky-view factor (svf) 
+Laskee korkeusmallista sky-view factorin tai anisotropic sky-view factorin.
+
+```shell
+#sky-view factor
+python dem2rvt.py --visualisoinnit=sky-view_factor
+python dem2rvt.py --visualisoinnit=svf
+#anisotropic sky-view factor
+python dem2rvt.py --visualisoinnit=anisotropic_sky-view_factor
+python dem2rvt.py --visualisoinnit=asvf
+```
+
+### Topographic openness
+Laskee pintamallista topographic positiivisen- ja negatiivisen topographic opennessin ja tallentaa ne erillisiin kansioihin.
+
+```shell
+python dem2rvt.py --visualisoinnit=openness
+```
+### Multi-scale topographic position (mstp)
+Laskee pintamallista multi-scale topographic positionin (mstp).
+
+```shell
+python dem2rvt.py --visualisoinnit=multi-scale_topographic_position
+python dem2rvt.py --visualisoinnit=mstp
+```
+
+### Local dominance
+Laskee pintamallista local dominancen.
+
+```shell
+python dem2rvt.py --visualisoinnit=dominance
 ```
 
 ## dem2tpi.py - Topographic position index
