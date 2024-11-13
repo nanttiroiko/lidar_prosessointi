@@ -79,6 +79,8 @@ laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: ht
 
 dem2rvt.py mahdollistaa erilaisten visualisointien tuottamisen Relief Visualization Toolboxin (RVT) avulla. RVT tarjoaa erittäin kattavan valikoiman erilaisia visualisointitekniikoita, jotka on listattu alla. Lisätietoa RVT:stä ja RVT:n avulla tehtävistä visualisoinneista: https://rvt-py.readthedocs.io/en/latest/index.html
 
+RVT Python library, Žiga Kokalj, Žiga Maroh, Krištof Oštir, Klemen Zakšek and Nejc Čož, 2022. (ZRC SAZU and University of Ljubljana)
+
 Esimerkkejä dem2rvt.py käytöstä:
 
 Yksittäisen visualisoinnin tekeminen
@@ -135,6 +137,8 @@ python dem2rvt.py --visualisoinnit=msrm
 
 ### Sky-view factor (svf) 
 Laskee korkeusmallista sky-view factorin tai anisotropic sky-view factorin.
+
+Sky-view factor tarkempi kuvaus ja viittaukset: Zakšek, K., Oštir, K., Kokalj, Ž. 2011. Sky-View Factor as a Relief Visualization Technique. Remote Sensing 3: 398-415 https://doi.org/10.3390/rs3020398 
 
 ```shell
 #sky-view factor
