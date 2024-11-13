@@ -77,7 +77,7 @@ laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: ht
 
 ## dem2rvt.py - Pintamallien visualisointi Relief Visualization Toolboxin (RVT) avulla
 
-dem2rvt.py tarjoaa yksinkertaisen ja tehokkaan käyttöliittymän korkeusmallien visualisointiin Relief Visualization Toolboxin (RVT) avulla. 
+dem2rvt.py tarjoaa yksinkertaisen ja tehokkaan käyttöliittymän korkeusmallien visualisointiin Relief Visualization Toolboxin (RVT) avulla. RVT tarjoaa kattavan valikoiman erilaisia visualisointitekniikoita. 
 - Lisätietoa RVT:stä ja RVT:n avulla tehtävistä visualisoinneista: https://rvt-py.readthedocs.io/en/latest/index.html
 - RVT Python library, Žiga Kokalj, Žiga Maroh, Krištof Oštir, Klemen Zakšek and Nejc Čož, 2022. (ZRC SAZU and University of Ljubljana)
 
@@ -86,6 +86,10 @@ Esimerkkejä dem2rvt.py käytöstä:
 Yksittäisen visualisoinnin tekeminen
 ```shell
 python dem2rvt.py --visualisoinnit=hillshade
+```
+Komentoa voi lyhentää käyttäen --visualisoinnit sijaan lyhennettä -v
+```shell
+python dem2rvt.py -v=hillshade
 ```
 Useampien visualisointien tekeminen yhdellä komennolla on mahdollista käyttäen erottimena puolipistettä
 ```shell
@@ -96,6 +100,26 @@ Avainsanalla 'kaikki' voi tehdä yhdellä komennonnolla kaikki RVT:n mahdollista
 python dem2rvt.py --visualisoinnit=kaikki
 ```
 
+Osana komentoa skriptille voi antaa valinnaisia lisäargumentteja. Kaikkiin visualisointeihin vaikuttavia lisäargumentteja ovat:
+- --vrt
+  - Määrittää tehdäänkö visualisoinnista lopuksi virtuaalirasteri
+  - Virtuaalirasteri mahdollistaa suuren tiedostomäärän käsittelyn yhtenä tasona paikkatieto-ohjelmissa.
+  - Vaihtoehdot: True -> tehdään virtuaalirasteri / False -> ei tehdä virtuaalirasteria
+  - Oletuksena True
+- --vrt_pyramidit (default=True)
+  - Jos visualisoinnille tehdään virtuaalirasteri, --vrt_pyramidit määrittää tehdäänkö virtuaalirasterista pyramidit, eli matalaresoluutioiset esikatselukuvat.
+  - Pyramidit sujuvoittavat etenkin suurempien aineistojen käyttöä.
+- --gdal_datatype
+  - määrittää tallennettavien visualisointien datatyypin käyttäen gdal numerokoodia (oletuksena 6, eli float32)
+ 
+Lisäparametreja käytetään seuraavasti
+```shell
+#Tekee vinovalovarjosteen, mutta ei laske lopuksi virtuaalirasteria
+python dem2rvt.py --visualisoinnit=kaikki --vrt=False
+#Tekee vinovalovarjosteen ja sille virtuaalirasterin, mutta ei pyramideja
+python dem2rvt.py --visualisoinnit=kaikki --vrt_pyramidit=False 
+```
+
 ### Vinovalovarjoste / hillshade
 
 Laskee korkeusmallista vinovalovarjosteen ja tallentaa tuloksen kansioon hillshade/
@@ -104,13 +128,34 @@ Laskee korkeusmallista vinovalovarjosteen ja tallentaa tuloksen kansioon hillsha
 python dem2rvt.py --visualisoinnit=hillshade
 ```
 
+Vinovalovarjosteen lisäparametrit ja oletusasetukset
+- --ve_factor
+  - korkeuserojen korostamiseen käytettävä kerroin. Oletuksena 3
+- --sun_azimuth
+  - Valonlähteen suunta asteina. Oletuksena 315
+- --sun_elevation
+  - Valonlähteen korkeus asteina. Oletuksena 45
+
+Esimerkikki lisäparamterien käytöstä:
+```shell
+python dem2rvt.py --visualisoinnit=hillshade --ve_factor=2 --sun_azimuth=115 --sun_elevation=20
+```
+
 ### Monisuuntainen vinovalovarjoste / multiple direction hillshade (mdhs)
-Laskee korkeusmallista useasta suunnasta valaistun vinovalovarjosteen ja tallentaa sen kansioon multi_hillshade/
+Laskee korkeusmallista useasta suunnasta valaistun vinovalovarjosteen ja tallentaa sen rgb-rasterina kansioon multi_hillshade/
 
 ```shell
 python dem2rvt.py --visualisoinnit=multi_hillshade
 python dem2rvt.py --visualisoinnit=mdhs
 ```
+
+Monisuuntaisen vinovalovarjosteen lisäparametrit ja oletusasetukset
+- --ve_factor
+  - korkeuserojen korostamiseen käytettävä kerroin. Oletuksena 1
+- --sun_elevation
+  - Valonlähteen korkeus asteina. Oletuksena 45
+- --nr_directions
+  - valaisusuuntien määrä, oletuksena 3
 
 ### Rinteenkaltevuus / slope
 Laskee korkeusmallista rinteenkaltevuuden (slope) ja tallentaa sen kansioon slope/
