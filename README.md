@@ -6,7 +6,7 @@ Skriptit on tehty erityisesti suuria tiedostomääriä ajatellen - eli yhdellä 
 
 Tällä hetkellä skriptien valikoima on melko rajattu ja tehty lähinnä arkeologien tarpeita ajatellen. Valikoimaan lisätään mahdollisesti myöhemmin muita skriptejä, mutta voit yhtä hyvin jatkaa aineiston käsittelyä myös muilla ohjelmilla (esim. QGIS)
 
-Käyttöohjeissa on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaperäiset ohjeet, joita noudattamalla skriptejä on mahdollista käyttää ilman aiempaa kokemusta ohjelmoinnista tai komentorivin käytöstä. Myös skriptien käyttö on pyritty pitämään mahdollisimman yksinkertaisena ja yhtenäisenä.
+Käytöstä on pyritty antamaan mahdollisimman yksinkertaiset ja seikkaperäiset ohjeet, joita noudattamalla skriptejä on mahdollista käyttää ilman aiempaa kokemusta ohjelmoinnista tai komentorivin käytöstä. Myös skriptien käyttö on pyritty pitämään mahdollisimman yksinkertaisena ja yhtenäisenä.
 
 # Esivalmistelut
 
