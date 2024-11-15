@@ -59,6 +59,13 @@ Skripti suoritetaan komennolla:
 python laz2dem.py
 ```
 
+Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää ominaisuutta esimerkiksi asetusten vaikutusten testaamiseen.
+
+laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: https://pdal.io/
+
+<details>
+<summary>Valinnaiset lisäparametrit</summary>
+
 Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --buffer      (default=0)
   - Laserkeilaustiilten käsittelyssä käytettävä bufferi. Käytettäessä bufferia pintamallin muodostamiseen käytetään myös käsiteltävää tiiltä ympäröivät pisteet, jolloin myös pintamalleista tulee alkuperäistä laserkeilaustiiltä laajempia. Bufferin käytöstä on hyötyä esimerkiksi tiettyjen visualisointitekniikoiden kanssa (esim. TPI), jotta vältytään poikkeamilta käsitetävien tiilien reunoilla. Bufferin koko annetaan metreissä. Bufferin käyttö hidastaa jonkin verran käsittelyä.
@@ -69,15 +76,11 @@ Skriptille voi antaa seuraavat valinnaiset parametrit:
 - --resolution  (default=1)
   - Laserkeilausaineistosta tuotettavien rasterien resoluutio metreinä. Käytä desimaalierottimena pistettä.
 
-
 Lisäparametrit annetaan varsinaisen komennon jälkeen, esim: 
 ```shell
 python pdal_laz2dem.py --buffer=30 --cores=8 --resolution=0.5
 ```
-
-Skriptin suorittamisen lopuksi skripti ilmoittaa käsittelyyn kuluneen ajan sekä yhden tiedoston käsittelyyn keskimäärin kuluneen ajan sekunteina. Voit käyttää ominaisuutta esimerkiksi asetusten vaikutusten testaamiseen.
-
-laz2dem.py on hyödyntää laserkeilausaineiston käsittelyyn PDAL-kirjastoa: https://pdal.io/
+</details>
 
 ## dem2rvt.py - Pintamallien visualisointi Relief Visualization Toolboxin (RVT) avulla
 
@@ -103,6 +106,9 @@ Avainsanalla 'kaikki' voi tehdä yhdellä komennonnolla kaikki RVT:n mahdollista
 ```shell
 python dem2rvt.py --visualisoinnit=kaikki
 ```
+<details>
+
+<summary>Lisäparametrit</summary>
 
 Osana komentoa skriptille voi antaa valinnaisia lisäargumentteja. Kaikkiin visualisointeihin vaikuttavia lisäargumentteja ovat:
 - --vrt
@@ -115,7 +121,7 @@ Osana komentoa skriptille voi antaa valinnaisia lisäargumentteja. Kaikkiin visu
   - Pyramidit sujuvoittavat etenkin suurempien aineistojen käyttöä.
 - --gdal_datatype
   - määrittää tallennettavien visualisointien datatyypin käyttäen gdal numerokoodia (oletuksena 6, eli float32)
- 
+
 Lisäparametreja käytetään seuraavasti
 ```shell
 #Tekee vinovalovarjosteen, mutta ei laske lopuksi virtuaalirasteria
@@ -124,6 +130,8 @@ python dem2rvt.py --visualisoinnit=kaikki --vrt=False
 python dem2rvt.py --visualisoinnit=kaikki --vrt_pyramidit=False 
 ```
 
+</details>
+
 ### Vinovalovarjoste / hillshade
 
 Laskee korkeusmallista vinovalovarjosteen ja tallentaa tuloksen kansioon hillshade/
@@ -131,6 +139,10 @@ Laskee korkeusmallista vinovalovarjosteen ja tallentaa tuloksen kansioon hillsha
 ```shell
 python dem2rvt.py --visualisoinnit=hillshade
 ```
+
+<details>
+
+<summary>Lisäparametrit</summary>
 
 Vinovalovarjosteen lisäparametrit ja oletusasetukset
 - --ve_factor
@@ -144,6 +156,7 @@ Esimerkikki lisäparamterien käytöstä:
 ```shell
 python dem2rvt.py --visualisoinnit=hillshade --ve_factor=2 --sun_azimuth=115 --sun_elevation=20
 ```
+</details>
 
 ### Monisuuntainen vinovalovarjoste / multiple direction hillshade (mdhs)
 Laskee korkeusmallista useasta suunnasta valaistun vinovalovarjosteen ja tallentaa sen rgb-rasterina kansioon multi_hillshade/
@@ -153,6 +166,10 @@ python dem2rvt.py --visualisoinnit=multi_hillshade
 python dem2rvt.py --visualisoinnit=mdhs
 ```
 
+<details>
+
+<summary>Lisäparametrit</summary>
+
 Monisuuntaisen vinovalovarjosteen lisäparametrit ja oletusasetukset
 - --ve_factor
   - korkeuserojen korostamiseen käytettävä kerroin. Oletuksena 1
@@ -160,6 +177,9 @@ Monisuuntaisen vinovalovarjosteen lisäparametrit ja oletusasetukset
   - Valonlähteen korkeus asteina. Oletuksena 45
 - --nr_directions
   - valaisusuuntien määrä, oletuksena 3
+
+</details>
+
 
 ### Rinteenkaltevuus / slope
 Laskee korkeusmallista rinteenkaltevuuden (slope) ja tallentaa sen kansioon slope/
